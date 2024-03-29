@@ -1,0 +1,25 @@
+{% extends 'aplicacion/index.html' %}
+
+{% block header %}
+<header class="bg-dark py-5">
+    <div class="container px-3 px-lg-4 my-4">
+        <div class="text-center text-white">
+            <h2 class="display-7 fw-bolder">Editar mi perfil [{{user.first_name}}]</h2>
+            <li><a class="btn btn-primary" href="{% url 'agregar_avatar' %}">Cambiar foto de perfil</a></li>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block contenido %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Guardar cambios">
+</form>
+
+
+{% endblock contenido %}

@@ -1,0 +1,21 @@
+{% extends 'aplicacion/index.html' %}
+
+{% block header %}
+<header class="bg-dark py-5">
+    <div class="container px-3 px-lg-4 my-4">
+        <div class="text-center text-white">
+            <h2 class="display-7 fw-bolder">Registro de usuario</h2>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block contenido %}
+<form action="" method="post">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Registrarse">
+</form>
+{% endblock contenido %}

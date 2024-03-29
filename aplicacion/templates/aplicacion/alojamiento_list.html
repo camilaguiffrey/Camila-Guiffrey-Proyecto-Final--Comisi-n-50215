@@ -1,0 +1,39 @@
+{% extends "aplicacion/index.html" %}
+
+{% block header %}
+<header class="bg-dark py-5">
+    <div class="container px-3 px-lg-4 my-4">
+        <div class="text-center text-white">
+            <h2 class="display-7 fw-bolder"> Mis alojamientos </h2>
+            <a href="{% url 'agregarAlojamiento' %}" class="btn btn-success">Agregar un alojamiento</a>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row mt-4">
+        {% if object_list %}
+            {% for alojamiento in object_list %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ alojamiento.titulo }}</h5>
+                            <p class="card-text">{{ alojamiento.descripcion }}</p>
+                            <p class="card-text"><strong>Ciudad:</strong> {{ alojamiento.ciudad }}</p>
+                            <p class="card-text"><strong>Dirección:</strong> {{ alojamiento.direccion }}</p>
+                            <p class="card-text"><strong>Email de contacto:</strong> {{ alojamiento.email }}</p>
+                            <p class="card-text"><strong>Precio:</strong> {{ alojamiento.precio }}</p>
+                            <a href="{% url 'actualizarAlojamiento' pk=alojamiento.pk %}" class="btn btn-primary">Editar</a>
+                            <a href="{% url 'eliminarAlojamiento' pk=alojamiento.pk %}" class="btn btn-danger">Eliminar</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+        <p class="text-center"> Aún no has publicado ningún alojamiento.</p> 
+        {% endif %}
+    </div>
+</div>
+{% endblock contenido %}

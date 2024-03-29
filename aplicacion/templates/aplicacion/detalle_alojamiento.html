@@ -1,0 +1,66 @@
+{% extends 'aplicacion/index.html' %}
+
+{% block header %}
+<header class="bg-dark py-5">
+    <div class="container px-3 px-lg-4 my-4">
+        <div class="text-center text-white">
+            <h2 class="display-7 fw-bolder">"{{ alojamiento.titulo }}"</h2>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block contenido %}
+    <style>
+        .container {
+            display: flex;
+            align-items: center;
+        }
+        .descripcion {
+            flex: 1;
+            padding: 20px;
+        }
+        .imagen {
+            flex: 1;
+            max-width: 300px; /* Tamaño máximo deseado para las imágenes */
+            margin-left: 20px; /* Espacio entre la descripción y la imagen */
+        }
+        .imagen img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+<body>
+    <div class="container">
+        <div class="descripcion">
+            <p><strong>Características:</strong> {{ alojamiento.descripcion }}</p>
+            <p><strong>Ciudad:</strong> {{ alojamiento.ciudad }}</p>
+            <p><strong>Dirección:</strong> {{ alojamiento.direccion }}</p>
+            <p><strong>Precio:</strong> USD {{ alojamiento.precio }}</p>
+            <!--Botón que te redirecciona al correo del propietario-->
+            {% if user.email %}
+            <a href="mailto:{{ alojamiento.email }}" class="btn btn-primary">Contactar al propietario</a>
+            {% else %}
+            <p>El propietario de este alojamiento no ha proporcionado un correo electrónico.</p>
+            {% endif %}
+            <!--Aquí van las reseñas-->
+            <h2>Reseñas de este alojamiento</h2>
+            {% if alojamiento.review_set.all %}
+            <ul>
+                {% for r in alojamiento.review_set.all %}
+                <li> <strong>{{ r.usuario.username }}</strong>: "{{ r.texto }}"</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>Aún no hay reseñas para este alojamiento.</p>
+            {% endif %}
+            <a href="{% url 'nuevo_review' %}" class="btn btn-primary">Agregar reseña</a>
+        </div>
+        <div class="imagen">
+            {% if alojamiento.imagen %}
+            <img src="{{ alojamiento.imagen.url }}" alt="{{ alojamiento.titulo }}">
+            {% endif %}
+        </div>
+    </div>
+</body>
+{% endblock contenido %}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="Cami" content="" />
+        <title>El sitio Del Mar</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="{% url 'home' %}">El sitio Del Mar</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        {% if  user.is_authenticated == False %} 
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'alojamiento'%}">Alojamientos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'login'%}">Iniciar sesión</a></li>
+                            <li class="nav-item"> <a class="btn btn-primary" href="{% url 'registrar' %}">Registrarse</a></li>
+                        {% endif %} 
+                        {% if  user.is_authenticated %}        
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a></li>
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'about_me' %}">Sobre Mi</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'alojamiento'%}">Alojamientos</a></li>        
+                            <li class="nav-item"><a class="nav-link" href="{% url 'usuario' %}">Mi perfil [{{user.username}}]</a></li>
+                            <a  href="{% url 'agregar_avatar' %}" ><img src="{{ request.session.avatar }}" height="40px" weight="40px"/></a>  
+                            <li class="nav-item"> <a class="btn btn-primary" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                        {% endif %}                   
+                    </ul>
+                    <form class="d-flex" action="{% url 'encontrar_alojamiento' %}" method="GET">
+                        <input class="form-control me-2" type="search" placeholder="Buscar una ciudad" aria-label="Buscar" name="buscar">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>                  
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <!-- Header--> 
+        {% block header %}
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">El sitio Del Mar</h1>
+                    <p class="lead fw-normal text-white-50 mb-0">Los mejores alojamientos de la Costa Argentina</p>
+                </div>
+            </div>
+        </header>
+        {% endblock header %}
+       
+        {% block contenido %}
+        {% if  user.is_authenticated %}
+            <!-- CRUDS Reseñas, Usuarios y Ciudades -->
+            <section class="py-3">
+                <div class="text-center">
+                    <a href="{% url 'todasLasReseñas'%}" class="btn btn-primary">Ver todas las reseñas</a>
+                    <a href="{% url 'todosLosUsuarios'%}" class="btn btn-primary">Ver todos los usuarios</a>
+                    <a href="{% url 'todasLasCiudades'%}" class="btn btn-primary">Ver todas las ciudades</a>
+                </div>
+            </section>
+        {% endif %}
+        <!-- Cartas de algunas ciudades (estáticas) -->
+        <section class="py-3">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    {% block producto %}
+                    <div class="col mb-5">
+                        <div class="card h-100"> <!--Primer producto-->
+                            <!-- Product image-->
+                            <img class="card-img-top" src="/media/ciudades/imagen2.jpg" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Pinamar</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endblock producto %}
+                    <div class="col mb-5">
+                        <div class="card h-100"> <!--Primer producto-->
+                            <!-- Product image-->
+                            <img class="card-img-top" src="/media/ciudades/imagen1.png" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Cariló</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100"> <!--Primer producto-->
+                            <!-- Product image-->
+                            <img class="card-img-top" src="/media/ciudades/imagen3.jpg" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Valeria del Mar</h5>
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                        </div>
+                    </div>
+                    <div class="col mb-5">
+                        <div class="card h-100"> <!--Primer producto-->
+                            <!-- Product image-->
+                            <img class="card-img-top" src="/media/ciudades/imagen4.jpg" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h5 class="fw-bolder">Villa Gesell</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock contenido %}
+        {% block footer %}
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; El sitio del Mar 2024</p></div>
+        </footer>
+        {% endblock footer %}
+        <!-- Bootstrap core JS-->
+        <script src="{% static 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js'%}"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

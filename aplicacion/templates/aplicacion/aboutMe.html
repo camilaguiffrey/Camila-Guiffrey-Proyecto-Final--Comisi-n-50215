@@ -1,0 +1,41 @@
+{% extends "aplicacion/index.html" %}
+
+{% block header %}
+<header class="bg-dark py-5">
+    <div class="container px-3 px-lg-4 my-4">
+    </div>
+</header>
+{% endblock header %}
+
+{% block contenido %}
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>About Me</title>
+        <style>
+            .about-me {
+                background-color: #FAFFC9;
+                border: 1px solid #ccc;
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="about-me">
+            <h2 class="display-7 fw-bolder">Sobre Mi</h2>
+            <p>Me llamo Camila Guiffrey y tengo 19 años. Soy de Villa Elisa, una ciudad pequeña ubicada en Entre Ríos, pero actualmente estoy estudiando la carrera de Marketing en la ciudad de Paraná.</p>
+            <p>Me anoté en este curso gracias a una materia que tuve en la facultad llamada “Procesamiento de datos” que me despertó la curiosidad sobre la programación. Jamás había programado y hasta que hice el curso apenas sabía la diferencia entre dato e información, pero a medida que fueron avanzando las clases me fue interesando cada vez este mundo desconocido. Me interesaron mucho las clases y, a pesar de que me llevó muchas horas de escribir y borrar código, me gustó hacer este pequeño proyecto.</p>
+            <p>Sobre el proyecto, la idea surgió en mis vacaciones de verano en la costa argentina. Estaba pensando sobre qué tema podría hacer el proyecto y se me vino a la mente la idea de un sitio de alojamientos. A pesar de que mucho no tiene que ver con mi carrera, dado que en un principio era mi idea crear un sitio vinculado a la misma, me encanta ir a vacacionar a la costa con mi familia por lo que llevar a cabo esta idea me divirtió mucho.</p>
+            <p>En un futuro me gustaría seguir aprendiendo sobre programación y en algún momento lograr vincular de alguna manera mis conocimientos con mis estudios en Marketing.</p>
+        </div>
+    </body>
+{% endblock contenido %}
+{% block footer %}
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white">Copyright &copy; El sitio del Mar 2024</p></div>
+</footer>
+{% endblock footer %}
+
+</html>

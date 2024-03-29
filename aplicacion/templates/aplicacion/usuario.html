@@ -1,0 +1,25 @@
+{% extends 'aplicacion/index.html' %}
+
+{% block header %}
+<header class="bg-dark py-5">
+    <div class="container px-3 px-lg-4 my-4">
+        <div class="text-center text-white">
+            <h2 class="display-7 fw-bolder"> Mi perfil </h2>
+            <a  href="{% url 'agregar_avatar' %}" ><img src="{{ request.session.avatar }}" height="40px" weight="40px"/></a> 
+            <a href="{% url 'perfil'%}" class="btn btn-primary">Editar mi perfil</a>
+            <a href="{% url 'misAlojamientos'%}" class="btn btn-primary">Mis alojamientos</a>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block contenido %}
+<body>
+    <p><strong>Usuario: </strong> {{ user.username }}</p>
+    <p><strong>Nombre: </strong> {{ user.first_name }}</p>
+    <p><strong>Apellido: </strong> {{ user.last_name }}</p>
+    <p><strong>Email: </strong> {{ user.email }}</p>
+    <p><strong>Teléfono: </strong> {{ user.telefono }}</p>
+    <p><strong>Nacionalidad: </strong> {{ user.nacionalidad }}</p>
+</body>
+{% endblock contenido %}

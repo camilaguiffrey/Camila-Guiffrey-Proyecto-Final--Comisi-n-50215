@@ -1,0 +1,54 @@
+{% extends 'aplicacion/index.html' %}
+
+
+{% block header %}
+<header class="bg-dark py-5">
+    <div class="container px-3 px-lg-4 my-4">
+        <div class="text-center text-white">
+            <h2 class="display-7 fw-bolder">Todos los alojamientos</h2>
+            <a href="{% url 'agregarAlojamiento'%}" class="btn btn-primary">Añadir mi alojamiento</a>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block contenido %}
+<section class="py-5">
+    <div class="container">
+        <div class="row mt-4">
+            {% block producto %}
+            {% for a in alojamiento %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        {% if a.imagen %}
+                        <img src="{{ a.imagen.url }}" alt="{{ a.titulo }}" class="card-img-top">
+                        {% endif %}
+                        <!-- Detalles del producto -->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Nombre del producto -->
+                                <h5 class="fw-bolder">{{ a.titulo }}</h5>
+                                <!-- Descripción del producto -->
+                                <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div>{{ a.descripcion }}</div>
+                                </div>
+                                <!-- Precio del producto -->
+                                U$D {{ a.precio }}
+                            </div>
+                            <!-- Acciones del producto -->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a href="{% url 'detalle_alojamiento' a.id %}" class="btn btn-primary">Más información</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endblock producto %}
+        </div>
+    </div>
+</section>
+{% endblock contenido %}

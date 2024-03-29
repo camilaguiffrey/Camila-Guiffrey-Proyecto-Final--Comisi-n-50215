@@ -1,0 +1,17 @@
+{% extends "aplicacion/index.html" %}
+
+
+{% block header %}
+<h1 class="mb-5">Nueva ciudad</h1>
+{% endblock header %}
+
+
+{% block contenido %}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Añadir</button>
+</form>
+
+{% endblock contenido %}

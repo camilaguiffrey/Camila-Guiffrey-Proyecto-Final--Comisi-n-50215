@@ -1,0 +1,40 @@
+{% extends "aplicacion/index.html" %}
+
+{% block header %}
+<header class="bg-dark py-5">
+    <div class="container px-3 px-lg-4 my-4">
+        <div class="text-center text-white">
+            <h2 class="display-7 fw-bolder"> Todos los usuarios </h2>
+            <a href="{% url 'agregarUsuario' %}" class="btn btn-success">Agregar un usuario</a>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row mt-4">
+        {% if object_list %}
+            {% for usuario in object_list %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ usuario.username }}</h5>
+                            <p class="card-text"><strong>Nombre:</strong>{{usuario.nombre }}</p>
+                            <p class="card-text"><strong>Apellido:</strong> {{  usuario.apellido }}</p>
+                            <p class="card-text"><strong>Email:</strong> {{ usuario.email }}</p>
+                            <p class="card-text"><strong>Telefono:</strong> {{ usuario.telefono }}</p>
+                            <p class="card-text"><strong>Nacionalidad:</strong> {{ usuario.nacionalidad }}</p>
+                            <p class="card-text"><strong>Contraseña:</strong> {{ usuario.contraseña }}</p>
+                            <a href="{% url 'actualizarUsuario' pk=usuario.pk %}" class="btn btn-primary">Editar usuario</a>
+                            <a href="{% url 'eliminarUsuario' pk=usuario.pk %}" class="btn btn-danger">Eliminar usuario</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+        <p class="text-center"> Aún no hay usuarios disponibles.</p> 
+        {% endif %}
+    </div>
+</div>
+{% endblock contenido %}

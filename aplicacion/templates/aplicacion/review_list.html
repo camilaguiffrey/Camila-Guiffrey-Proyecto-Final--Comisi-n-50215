@@ -1,0 +1,60 @@
+{% extends "aplicacion/index.html" %}
+
+{% block header %}
+<header class="bg-dark py-5">
+    <div class="container px-3 px-lg-4 my-4">
+        <div class="text-center text-white">
+            <h2 class="display-7 fw-bolder"> Todas las reseñas del sitio </h2>
+            <a href="{% url 'agregarReseña' %}" class="btn btn-success">Agregar una reseña</a>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block contenido %}
+<table>
+    <tr>
+        <td width="200"><h2>Reseñas</h2></td>
+        <td>
+            <a
+            href="{% url 'agregarReseña' %}"
+            class="btn btn-primary btn-sm"
+            ><i class="fa fa-plus fa-lg" title="Subir"> </i>
+            </a>
+        </td>        
+    </tr>
+</table>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Usuario</th>
+            <th>Reseña</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for r in review_list  %}
+        <tr>
+            <td>{{ r.id }}</td>
+            <td>{{ r.usuario.username }}</td>
+            <td>{{ r.texto }}</td>
+            <td>
+                <a
+                  href="{% url 'actualizarReseña' r.id %}"
+                  class="btn btn-primary"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                </a>
+                <a
+                  href="{% url 'eliminarReseña' r.id %}"
+                  class="btn btn-danger"
+                  style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                  ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                </a>                
+            </td>  
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock contenido %}

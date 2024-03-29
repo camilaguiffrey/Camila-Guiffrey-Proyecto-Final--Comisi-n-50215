@@ -1,0 +1,16 @@
+{% extends "aplicacion/index.html" %}
+
+
+{% block header %}
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h2 class="display-7 fw-bolder">Ha cerrado su sesión</h2>
+            <a href="{% url 'home'%}" class="btn btn-primary">Volver al inicio</a>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+{% block contenido %}
+{% endblock contenido %}

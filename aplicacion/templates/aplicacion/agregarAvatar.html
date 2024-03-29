@@ -1,0 +1,31 @@
+{% extends "aplicacion/index.html" %}
+
+
+{% block header %}
+<header class="bg-dark py-5">
+    <div class="container px-3 px-lg-4 my-4">
+        <div class="text-center text-white">
+            <h2 class="display-7 fw-bolder">Actualizar imagen</h2>
+        </div>
+    </div>
+</header>
+{% endblock header %}
+
+
+{% block contenido %}
+
+{% if request.session.avatar %}
+    <h2>Imagen actual</h2>
+    <img src="{{ request.session.avatar }}" alt="Imagen actual" height="100px">
+{% endif %}
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <h2>Seleccionar imagen</h2>
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Confirmar cambios">
+</form>
+
+{% endblock contenido %}
