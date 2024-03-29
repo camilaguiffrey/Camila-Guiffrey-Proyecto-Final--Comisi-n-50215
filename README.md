@@ -34,6 +34,7 @@ En esta sección podemos ver todos los alojamientos. En el encabezado podemos ha
 CRUD - 1 por cada modelo
 
 En el caso de mi aplicación, no considero que sea muy coherente poder agregar usuarios, reseñas y ciudades a partir de un CRUD como el de alojamientos. Sin embargo, por una cuestión de que la consigna lo requería los realicé de igual modo. Los CRUD de los modelos Review, Usuario y Ciudad están disponibles en la página principal, en sus respectivos botones de “Ver  todos los usuarios” en caso del modelo Usuario, y así con los demás modelos. Solo son visibles para los usuarios que estén autenticados.
+
 Para el modelo Alojamiento, el CRUD está disponible en el perfil del usuario, haciendo click en el botón “Mis alojamientos”, allí se pueden hallar las opciones de agregar un alojamiento, editarlo o eliminarlo.
 
 Mi perfil
@@ -44,6 +45,8 @@ En esta página podemos observar los datos del usuario registrado, también se p
 Admin
 
 Nombre: Camila
+
 Contraseña: Guiffrey
+
 
 Link a un Drive con el video explicativo, las pruebas unitarias y un archivo README: https://drive.google.com/drive/folders/1jOO4Cu6FdwCqB2lrRXV6xXnDEJSWfdUq?usp=drive_link
